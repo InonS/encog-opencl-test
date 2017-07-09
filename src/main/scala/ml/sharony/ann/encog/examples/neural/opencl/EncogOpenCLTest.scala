@@ -34,7 +34,7 @@ object EncogOpenCLTest extends App {
     trainMgr.join()
   }
 
-  private def generateDataset(outputSize: Int = 2, inputSize: Int = 10, trainingSize: Int = 1e5.toInt, range: Tuple2[Double, Double] = (-1, 1), seed: Long = 2017): BasicMLDataSet = {
+  private def generateDataset(outputSize: Int = 2, inputSize: Int = 10, trainingSize: Int = 1e5.toInt, range: (Double, Double) = (-1, 1), seed: Long = 2017): BasicMLDataSet = {
     RandomTrainingFactory.generate(seed, trainingSize, inputSize, outputSize, range._1, range._2)
   }
 
