@@ -21,13 +21,16 @@ object EncogOpenCLTest extends App {
     val trainMgr = ConcurrentTrainingManager.getInstance()
     trainMgr.detectPerformers(true)
     EncogLogging.log(EncogLogging.LEVEL_DEBUG, trainMgr.toString)
+
     val training = generateDataset()
     val network = constructNetwork(training)
     val trainingJob = new RPROPJob(network, training, false)
+
     /*// As seen in Backpropagation (otherwise see Cross-Validation strategy in [EncogModel]
     trainingJob.addStrategy(new SmartLearningRate)
     trainingJob.addStrategy(new SmartMomentum)
     trainingJob.createTrainer(false)*/
+
     trainMgr.addTrainingJob(trainingJob)
     trainMgr.run()
     trainMgr.start()

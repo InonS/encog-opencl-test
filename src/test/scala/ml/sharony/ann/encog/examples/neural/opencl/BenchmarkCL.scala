@@ -33,18 +33,23 @@ object BenchmarkCL {
       val inputSize = 10
       val trainingSize = 100000
       val training = RandomTrainingFactory.generate(1000, trainingSize, inputSize, outputSize, -1, 1)
+
       val network = EncogUtility.simpleFeedForward(training.getInputSize, 6, 2, training.getIdealSize, true)
       network.reset()
+
       System.out.println("Running OpenCL test.")
       val clTime = benchmarkCL(network, training)
       System.out.println("OpenCL test took " + clTime + "ms.")
       System.out.println()
+
       System.out.println("Running non-OpenCL test.")
       val cpuTime = benchmarkCPU(network, training)
       System.out.println("Non-OpenCL test took " + cpuTime + "ms.")
       System.out.println()
+
       val percent = Format.formatPercent(cpuTime.toDouble / clTime.toDouble)
       System.out.println("OpenCL Performed at " + percent + " the speed of non-OpenCL")
+
     } catch {
       case ex: Exception =>
         System.out.println("Can't startup CL, make sure you have drivers loaded.")
