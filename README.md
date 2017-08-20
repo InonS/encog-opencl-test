@@ -1,2 +1,2 @@
-# Eencog OpenCL Test
+# Encog OpenCL Test
 See https://github.com/InonS/Open-GPGPU-ANN
